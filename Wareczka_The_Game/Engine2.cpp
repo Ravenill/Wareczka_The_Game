@@ -84,7 +84,9 @@ bool Engine2::check_collision(sf::Vector2f *A, int sizeA, sf::Vector2f *B, int s
 
 void Engine2::collision()
 {
+	//Player
 	sf::Vector2f A[4] = { player.getPosition(0),player.getPosition(1), player.getPosition(2), player.getPosition(3) };
+	//Walls
 	sf::Vector2f B[5][4] = {{ sf::Vector2f(0, 0), sf::Vector2f(590, 0), sf::Vector2f(590, WALL), sf::Vector2f(0, WALL)},
 							{ sf::Vector2f(690, 0), sf::Vector2f(RESX, 0), sf::Vector2f(RESX, WALL), sf::Vector2f(690, WALL)},
 							{ sf::Vector2f(RESX-WALL, 0), sf::Vector2f(RESX-WALL, RESY), sf::Vector2f(RESX, RESY), sf::Vector2f(RESX, 0)},

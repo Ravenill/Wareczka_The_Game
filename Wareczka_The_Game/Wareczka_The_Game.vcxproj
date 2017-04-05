@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="Engine2.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="Engine2.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
