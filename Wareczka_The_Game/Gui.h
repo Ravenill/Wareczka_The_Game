@@ -1,14 +1,22 @@
 #pragma once
+#include <SFML\Graphics.hpp>
 
-class Gui
+#define LP 4
+
+class Gui : public sf::Drawable
 {
 private:
+	sf::Font Font;
+	sf::Text text[LP];
 	int score;
 	int maxScore;
 	bool isDead;
+	
+	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
-	void display();
+	Gui();
+
 	void setscore(int a) { score = a; };
 	void update();
 };

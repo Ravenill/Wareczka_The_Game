@@ -3,7 +3,6 @@
 #include <Windows.h>
 #include <string>
 
-
 #define RESX 1280
 #define RESY 720
 
@@ -91,8 +90,8 @@ void Game::menu1()
 	//Background
 	sf::Sprite background;
 	background.setTexture(TextureMenu1);
-	background.setOrigin(1280 / 2, 720 / 2);
-	background.setPosition(1280 / 2, 720 / 2);
+	background.setOrigin(RESX / 2, RESY / 2);
+	background.setPosition(RESX / 2, RESY / 2);
 
 	//Napisy w Menu1
 	const int lp = 4;
@@ -105,13 +104,13 @@ void Game::menu1()
 		text[i].setCharacterSize(80);
 		text[i].setOrigin(text[i].getGlobalBounds().width / 2, text[i].getGlobalBounds().height / 2);
 	}
-	text[0].setPosition(1280 / 2 - 300, 500);
-	text[1].setPosition(1280 / 2 + 300, 500);
+	text[0].setPosition(RESX / 2 - 300, (RESY - 220));
+	text[1].setPosition(RESX / 2 + 300, (RESY - 220));
 
 	text[2].setCharacterSize(30);
-	text[2].setPosition(1340 - text[2].getGlobalBounds().width/2, 55);
+	text[2].setPosition(RESX, 55);
 	text[3].setCharacterSize(30);
-	text[3].setPosition(1340 - text[3].getGlobalBounds().width/2, 55);
+	text[3].setPosition(RESX, 55);
 
 	while (State == MENU1)
 	{
