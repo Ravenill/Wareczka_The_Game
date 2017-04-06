@@ -1,12 +1,14 @@
 #pragma once
 #include "Car.h"
 #include "Map.h"
+#include "Gui.h"
 #include <string>
 
 class Engine2
 {
 private:
 	sf::RenderWindow *MainWindow;
+	Gui gui;
 	Car player;
 	Map map;
 

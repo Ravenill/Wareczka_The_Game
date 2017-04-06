@@ -109,6 +109,7 @@ void Engine2::collision()
 //_____________________________________________
 void Engine2::update()
 {
+	gui.update(player.getStatus());
 	player.update();
 	collision();
 }
@@ -117,6 +118,7 @@ void Engine2::draw()
 {
 	(*MainWindow).clear();
 	(*MainWindow).draw(map);
+	(*MainWindow).draw(gui);
 	(*MainWindow).draw(player);
 	(*MainWindow).display();
 }

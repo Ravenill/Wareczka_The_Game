@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
+#include "States.h"
 
-enum Status { MENU1, MENU2, GAME1, GAME2, GAME3, GAME_OVER, END };
 
 class Game
 {

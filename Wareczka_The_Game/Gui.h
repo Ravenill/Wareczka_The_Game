@@ -1,22 +1,24 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "States.h"
 
 #define LP 4
 
 class Gui : public sf::Drawable
 {
 private:
-	sf::Font Font;
+	sf::Font font;
 	sf::Text text[LP];
 	int score;
-	int maxScore;
-	bool isDead;
+	int max_score;
+	StatusCar is_dead;
 	
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
 	Gui();
 
-	void setscore(int a) { score = a; };
-	void update();
+	void setScore(int a) { score = score + a; }
+	void setDead(StatusCar a) { is_dead = a; }
+	void update(StatusCar dead);
 };

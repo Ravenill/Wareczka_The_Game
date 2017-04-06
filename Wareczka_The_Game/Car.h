@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "States.h"
 
-enum StatusCar {ALIVE, DEAD, Status_Count};
 
 class Car : public sf::Drawable, sf::Transformable
 {
