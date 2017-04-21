@@ -202,6 +202,8 @@ void Car::handbreak()
 {
 	if (speed > 0.25)
 		speed = speed - 0.08f;
+	else if (speed < -0.25)
+		speed = speed + 0.08f;
 	
 	if (DRIFTO > abs(speed_rad) && speed > 0.5)
 	{

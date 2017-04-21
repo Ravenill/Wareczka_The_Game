@@ -132,8 +132,8 @@ void Game::menu1()
 				}
 				if (event.key.code == sf::Mouse::Left && text[1].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
 				{
-					MainWindow.close();
 					Musicbckgrd.stop();
+					MainWindow.close();
 					State = END;
 				}
 				//Fullscreen/Windowed

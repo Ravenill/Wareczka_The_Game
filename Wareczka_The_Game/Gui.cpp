@@ -14,9 +14,6 @@ void Gui::update(StatusCar dead)
 
 	sc = std::to_string(score);
 	text[3].setString(sc);
-
-
-
 }
 
 void Gui::draw(sf::RenderTarget &target, sf::RenderStates states) const
