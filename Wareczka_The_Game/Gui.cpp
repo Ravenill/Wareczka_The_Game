@@ -19,8 +19,8 @@ void Gui::update(StatusCar dead)
 	miliseconds = time.asMilliseconds();
 
 	text_time[0].setString((minutes == 0) ? "00" : std::to_string(minutes));
-	text_time[2].setString(std::to_string(seconds));
-	text_time[4].setString(std::to_string(miliseconds));
+	text_time[2].setString((seconds == 0) ? "00" : std::to_string(seconds));
+	text_time[4].setString((miliseconds == 0) ? "00" : std::to_string(miliseconds));
 
 	std::string sc;
 	setDead(dead);
