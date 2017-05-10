@@ -70,9 +70,6 @@ void Game::runGame()
 		case GAME3:
 			game3();
 			break;
-		case GAME_OVER:
-			//
-			break;
 		}
 	}
 }

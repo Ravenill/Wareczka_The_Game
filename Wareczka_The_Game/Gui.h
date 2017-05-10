@@ -14,6 +14,7 @@ private:
 	int max_score;
 	StatusCar is_dead;
 	sf::Clock clock;
+	sf::Time time;
 	
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
@@ -22,5 +23,6 @@ public:
 
 	void setScore(int a) { score = score + a; }
 	void setDead(StatusCar a) { is_dead = a; }
+	float getTime() const { return time.asSeconds(); }
 	void update(StatusCar dead);
 };

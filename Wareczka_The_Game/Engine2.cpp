@@ -125,6 +125,22 @@ void Engine2::draw()
 
 void Engine2::run()
 {
+	while (State != END_GAME2)
+	{
+		switch (State)
+		{
+		case StatusGame2::RUN:
+			game();
+			break;
+		case MENU2:
+			end();
+			break;
+		}
+	}
+}
+
+void Engine2::game()
+{
 	bool menu = false;
 
 	while (!menu)
@@ -134,6 +150,12 @@ void Engine2::run()
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || event.type == sf::Event::Closed)
 				menu = true;
+		}
+
+		if (gui.getTime() <= 0)
+		{
+			player.setStatus(StatusCar::DEAD);
+			menu = 1;
 		}
 
 		if (player.getStatus() != DEAD)
@@ -165,9 +187,15 @@ void Engine2::run()
 				player.handbreak();
 			}
 		}
-		
 
 		update();
 		draw();
 	}
+	State = GAME_OVER;
+}
+
+void Engine2::end()
+{
+
+	State = END_GAME2;
 }

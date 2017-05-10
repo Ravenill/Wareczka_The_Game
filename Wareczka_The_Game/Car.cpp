@@ -163,34 +163,33 @@ void Car::drifting()
 
 void Car::update()
 {
-	rotate();
-	strighten();
+	if (status == StatusCar::ALIVE)
+	{
+		rotate();
+		strighten();
 
-	//debug
-	//system("CLS");
-	std::cout << shape[0].getPosition().x << ", " << shape[0].getPosition().y << "\n" << shape[0].getRotation() << "\n" << wheel_rad << "\n" << wheel[0].getPosition().x << ", " << wheel[0].getPosition().y << "   " << wheel[1].getPosition().x << ", " << wheel[1].getPosition().y << "   " << wheel[2].getPosition().x << "," << wheel[2].getPosition().y << "   " << wheel[3].getPosition().x << ", " << wheel[3].getPosition().y << "\n" << wheel[0].getRotation() << "\t" << speed << "\n" << speed_rad << "\n" << '\n';;
-	
-	//moving x, y
-	float angle = shape[0].getRotation();
-	float xN = static_cast<float>(sin(M_PI * ((angle + wheel_rad) / 180)));
-	float yN = static_cast<float>(cos(M_PI * ((angle + wheel_rad) / 180)));
+		//debug
+		//system("CLS");
+		std::cout << shape[0].getPosition().x << ", " << shape[0].getPosition().y << "\n" << shape[0].getRotation() << "\n" << wheel_rad << "\n" << wheel[0].getPosition().x << ", " << wheel[0].getPosition().y << "   " << wheel[1].getPosition().x << ", " << wheel[1].getPosition().y << "   " << wheel[2].getPosition().x << "," << wheel[2].getPosition().y << "   " << wheel[3].getPosition().x << ", " << wheel[3].getPosition().y << "\n" << wheel[0].getRotation() << "\t" << speed << "\n" << speed_rad << "\n" << '\n';;
 
-	vx = xN * speed;
-	vy = yN * speed;
+		//moving x, y
+		float angle = shape[0].getRotation();
+		float xN = static_cast<float>(sin(M_PI * ((angle + wheel_rad) / 180)));
+		float yN = static_cast<float>(cos(M_PI * ((angle + wheel_rad) / 180)));
 
-	deaccelerate();
+		vx = xN * speed * time;
+		vy = yN * speed * time;
 
-	//moving command
-	shape[0].move(vx, -vy);
-	follow();
+		deaccelerate();
 
-	//drifting
-	drifting();
-	follow();
+		//moving command
+		shape[0].move(vx, -vy);
+		follow();
 
-	//Dead
-	if (status == DEAD)
-		speed = 0;
+		//drifting
+		drifting();
+		follow();
+	}
 }
 
 void Car::playAnimation(bool play)
@@ -254,27 +253,6 @@ void Car::rotate_wheel(int angle)
 		resist = 8;
 	if (speed <= 0)
 		resist = 40;
-
-	/*if (speed <= 0.5)
-		resist = 40;
-	else if (speed > 0.5 && speed <= 1)
-		resist = 38;
-	else if (speed > 1 && speed <= 1.5)
-		resist = 36;
-	else if (speed > 1.5 && speed <= 2.5)
-		resist = 32;
-	else if (speed > 2.5 && speed <= 3)
-		resist = 28;
-	else if (speed > 3 && speed <= 3.5)
-		resist = 24;
-	else if (speed > 3.5 && speed <= 4.5)
-		resist = 20;
-	else if (speed > 4.5 && speed <= 5.5)
-		resist = 16;
-	else if (speed > 5.5 && speed <= 6.5)
-		resist = 12;
-	else if (speed > 6.5)
-		resist = 8;*/
 
 	wheel_rad += angle;
 	if (!(wheel_rad <= resist && wheel_rad >= -resist))

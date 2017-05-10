@@ -8,6 +8,7 @@ class Engine2
 {
 private:
 	sf::RenderWindow *MainWindow;
+	StatusGame2 State;
 	Gui gui;
 	Car player;
 	Map map;
@@ -21,11 +22,12 @@ private:
 
 
 public:
-	Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")) {};
+	Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")), State(StatusGame2::RUN) {};
 	~Engine2() {}
 
 	void run();
-
+	void game();
+	void end();
 };
 
 //SAT

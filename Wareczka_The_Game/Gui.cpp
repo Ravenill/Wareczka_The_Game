@@ -8,7 +8,7 @@
 void Gui::update(StatusCar dead)
 {
 	//TIME
-	sf::Time time = sf::milliseconds(60000) - clock.getElapsedTime();
+	time = sf::milliseconds(60000) - clock.getElapsedTime();
 	if (time < sf::milliseconds(0)) time = sf::milliseconds(0);
 
 	int minutes, seconds, miliseconds;
@@ -18,9 +18,14 @@ void Gui::update(StatusCar dead)
 	time = time - sf::milliseconds(seconds * 1000);
 	miliseconds = time.asMilliseconds();
 
-	text_time[0].setString((minutes == 0) ? "00" : std::to_string(minutes));
-	text_time[2].setString((seconds == 0) ? "00" : std::to_string(seconds));
-	text_time[4].setString((miliseconds == 0) ? "00" : std::to_string(miliseconds));
+	std::string times[3];
+	times[0] = ((minutes < 10) ? "0" : "") + std::to_string(minutes);
+	times[1] = ((seconds < 10) ? "0" : "") + std::to_string(seconds);
+	times[2] = ((miliseconds < 10) ? "0" : "") + std::to_string(miliseconds);
+
+	text_time[0].setString(times[0]);
+	text_time[2].setString(times[1]);
+	text_time[4].setString(times[2]);
 
 	std::string sc;
 	setDead(dead);
@@ -80,4 +85,6 @@ Gui::Gui()
 	score = 0;
 	max_score = 0;
 	is_dead = ALIVE;
+	clock.restart();
+	time = sf::seconds(1);
 }
