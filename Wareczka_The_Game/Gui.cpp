@@ -11,6 +11,7 @@ void Gui::update(StatusCar dead)
 	time = sf::milliseconds(60000) - clock.getElapsedTime();
 	if (time < sf::milliseconds(0)) time = sf::milliseconds(0);
 
+	//time counting
 	int minutes, seconds, miliseconds;
 	minutes = time.asMilliseconds() / 60000;
 	time = time - sf::milliseconds(minutes * 60000);
@@ -30,7 +31,7 @@ void Gui::update(StatusCar dead)
 	std::string sc;
 	setDead(dead);
 
-	text[2].setString( ((is_dead == ALIVE) ? "OK" : "CRASHED" ) );
+	text[2].setString( ((is_dead == ALIVE) ? "OK" : ((is_dead == DEAD) ? "CRASHED" : "ESCAPED")) );
 
 	sc = std::to_string(score);
 	text[3].setString(sc);

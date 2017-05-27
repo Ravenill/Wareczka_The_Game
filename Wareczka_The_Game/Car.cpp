@@ -6,8 +6,9 @@
 
 //Car Paramaters
 #define DRIFTO 2.5f
-#define POSX 100.0f
-#define POSY 100.0f
+#define POSX 640.0f //x pos
+#define POSY 220.0f //y pos
+#define ANGLE 180
 #define XBLOCK 30.0f
 #define YBLOCK 30.0f
 
@@ -19,8 +20,14 @@
 
 Car::Car()
 {
+	//TICK for time
+	sf::Clock clock;
+	sf::Time time1, time2;
+	time1 = clock.getElapsedTime();
+
 	for (int i = 0; i < 2; i++)
 	{
+		//shape
 		shape[i].setPointCount(4);
 
 		shape[i].setPoint(0, sf::Vector2f(0, 0));
@@ -28,15 +35,18 @@ Car::Car()
 		shape[i].setPoint(2, sf::Vector2f(XBLOCK, YBLOCK));
 		shape[i].setPoint(3, sf::Vector2f(0, YBLOCK));
 
-		shape[i].setOrigin((XBLOCK/2), (YBLOCK/2));
-		shape[i].setPosition(POSX, i == 0 ? POSY : (POSY + YBLOCK) );
+		shape[i].setOrigin((XBLOCK / 2), (YBLOCK / 2));
+		shape[i].setPosition(POSX, i == 0 ? POSY : (POSY + YBLOCK));
+		shape[i].setRotation(ANGLE);
 	}
 
+	//position of wheels
 	sf::Vector2f pos[4] = { {(POSX - (XBLOCK / 2) + (XWHEEL / 2) - 2), POSY},
 							{(POSX + (XBLOCK / 2) - (XWHEEL / 2) + 2), POSY},
 							{(POSX - (XBLOCK / 2) + (XWHEEL / 2) - 2), (POSY + YBLOCK)},
-							{(POSX + (XBLOCK / 2) - (XWHEEL / 2) + 2), (POSY + YBLOCK)}};
+							{(POSX + (XBLOCK / 2) - (XWHEEL / 2) + 2), (POSY + YBLOCK)} };
 
+	//setting position
 	for (int i = 0; i < 4; i++)
 	{
 		wheel[i].setPointCount(4);
@@ -46,7 +56,7 @@ Car::Car()
 		wheel[i].setPoint(2, sf::Vector2f(XWHEEL, YWHEEL));
 		wheel[i].setPoint(3, sf::Vector2f(0, YWHEEL));
 
-		wheel[i].setOrigin((XWHEEL/2), (YWHEEL/2));
+		wheel[i].setOrigin((XWHEEL / 2), (YWHEEL / 2));
 		wheel[i].setPosition(pos[i]);
 		wheel[i].setFillColor(sf::Color::Black);
 	}
@@ -59,16 +69,19 @@ Car::Car()
 	vx = 0;
 	vy = 0;
 
+	//loading textures
 	if (!front.loadFromFile("data/graphics/Skoda/Skoda1.png") || !rear.loadFromFile("data/graphics/Skoda/Skoda2.png"))
 	{
 		MessageBox(NULL, "Error! Textures not found. Please, reinstal the game.", ERROR, NULL);
 		return;
 	}
-	sf::Texture *front1 = &front;
-	sf::Texture *rear1 = &rear;
+	shape[0].setTexture(&front);
+	shape[1].setTexture(&rear);
 
-	shape[0].setTexture(front1);
-	shape[1].setTexture(rear1);
+	//TICK for time (continued)
+	time2 = clock.getElapsedTime();
+	time2 = time2 - time1;
+	time = 1;//floor(time2.asMilliseconds());//shitfloor
 }
 
 sf::Vector2f Car::getPosition(size_t index)

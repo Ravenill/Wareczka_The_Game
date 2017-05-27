@@ -3,7 +3,7 @@
 
 Map::Map(std::string patch)
 {
-	//wczytanie i ustawienie textury mapy
+	//load and set map texture
 	if (!texture.loadFromFile(patch))
 	{
 		MessageBox(NULL, "Error! Textures not found. Please, reinstal the game.", ERROR, NULL);

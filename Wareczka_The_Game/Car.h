@@ -18,7 +18,7 @@ private:
 	float wheel_rad;
 	float speed;
 	float speed_rad;
-	const float time = 1;
+	float time;
 
 	float vx;
 	float vy;

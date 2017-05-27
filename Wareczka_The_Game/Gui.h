@@ -22,7 +22,9 @@ public:
 	Gui();
 
 	void setScore(int a) { score = score + a; }
+	void resetScore() { score = 0; }
 	void setDead(StatusCar a) { is_dead = a; }
+	int getScore() { return score; }
 	float getTime() const { return time.asSeconds(); }
 	void update(StatusCar dead);
 };

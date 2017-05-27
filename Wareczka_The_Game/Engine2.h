@@ -2,6 +2,7 @@
 #include "Car.h"
 #include "Map.h"
 #include "Gui.h"
+#include "Bottle.h"
 #include <string>
 
 class Engine2
@@ -12,22 +13,25 @@ private:
 	Gui gui;
 	Car player;
 	Map map;
+	Bottle wareczka;
+
 
 	void update();
 	void draw();
 	void collision();
+	bool isEscape();
 
 	//SAT
 	bool check_collision(sf::Vector2f *A, int sizeA, sf::Vector2f *B, int SizeB, sf::Vector2f &offset);
 
 
 public:
-	Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")), State(StatusGame2::RUN) {};
+	Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")), State(StatusGame2::RUN), wareczka(5) {};
 	~Engine2() {}
 
 	void run();
 	void game();
-	void end();
+	void end(bool win);
 };
 
 //SAT
