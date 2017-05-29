@@ -21,7 +21,7 @@ Game::Game()
 	//£adowanie textur, czcionek i reszty
 	if (!Font.loadFromFile("data/Streamster.ttf"))
 	{
-		MessageBox(NULL, "Error! Font Streamster.tff not found. Please, download it and paste into /data folder.", ERROR, NULL);
+		MessageBox(NULL, "Error! Font Streamster.ttf not found. Please, download it and paste into /data folder.", ERROR, NULL);
 		return;
 	}
 	if (!TextureMenu1.loadFromFile("data/graphics/bckgrd.png") || !TextureMenu2.loadFromFile("data/graphics/bckgrd2.png") || !Frame.loadFromFile("data/graphics/empty.png") || !icon.loadFromFile("data/graphics/icon.png"))
