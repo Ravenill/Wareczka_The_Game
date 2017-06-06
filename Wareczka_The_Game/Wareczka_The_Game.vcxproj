@@ -119,21 +119,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Bottle.cpp" />
     <ClCompile Include="Engine2.cpp" />
+    <ClCompile Include="Fagg.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStar.h" />
     <ClInclude Include="Bottle.h" />
+    <ClInclude Include="Comparator.h" />
     <ClInclude Include="Engine2.h" />
+    <ClInclude Include="Fagg.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="States.h" />
   </ItemGroup>

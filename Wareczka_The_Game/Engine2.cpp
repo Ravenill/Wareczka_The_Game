@@ -95,6 +95,12 @@ void Engine2::collision()
 							{ sf::Vector2f(0, 0), sf::Vector2f(0, RESY), sf::Vector2f(WALL, RESY), sf::Vector2f(WALL, 0)} };
 	//bottle
 	sf::Vector2f bottle[4] = { wareczka.getPosition(0), wareczka.getPosition(1), wareczka.getPosition(2), wareczka.getPosition(3) };
+	//policeman
+	sf::Vector2f police[4] = { sf::Vector2f(policeman.getPosition().x - policeman.getRadius(),policeman.getPosition().y),
+							   sf::Vector2f(policeman.getPosition().x,policeman.getPosition().y - policeman.getRadius()) ,
+							   sf::Vector2f(policeman.getPosition().x,policeman.getPosition().y + policeman.getRadius()) ,
+							   sf::Vector2f(policeman.getPosition().x + policeman.getRadius(),policeman.getPosition().y) };
+
 
 	//collision with walls
 	for (int j = 0; j < 4; j++)
@@ -106,7 +112,7 @@ void Engine2::collision()
 				if (check_collision(player_car, 4, wall[z], 4, player_car[j] - wall[z][i]))
 				{
 					player.setStatus(StatusCar::DEAD);
-					gui.resetScore();
+					//gui.resetScore();
 					State = StatusGame2::GAME_OVER;
 				}
 			}
@@ -122,12 +128,26 @@ void Engine2::collision()
 			wareczka.randomize();
 		}
 	}
+
+	//collision with policeman
+	if (!policeman.getHitStatus())
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (check_collision(player_car, 4, police, 4, player_car[i] - police[i]))
+			{
+				gui.setScore(-10);
+				policeman.hit();
+			}
+		}
+	}
 }
 
 //_____________________________________________
 void Engine2::update()
 {
 	player.update();
+	policeman.update();
 	collision();
 	gui.update(player.getStatus());
 }
@@ -138,6 +158,7 @@ void Engine2::draw()
 	(*MainWindow).draw(map);
 	(*MainWindow).draw(gui);
 	(*MainWindow).draw(wareczka);
+	(*MainWindow).draw(policeman);
 	(*MainWindow).draw(player);
 	(*MainWindow).display();
 }
@@ -185,7 +206,7 @@ void Engine2::game()
 		if (gui.getTime() <= 0)
 		{
 			State = StatusGame2::GAME_OVER;
-			gui.resetScore();
+			//gui.resetScore();
 			menu = true;
 		}
 		//if go outside

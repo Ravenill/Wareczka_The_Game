@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Gui.h"
 #include "Bottle.h"
+#include "Fagg.h"
 #include <string>
 
 class Engine2
@@ -14,8 +15,8 @@ private:
 	Car player;
 	Map map;
 	Bottle wareczka;
-
-
+	Fagg policeman;
+		
 	void update();
 	void draw();
 	void collision();

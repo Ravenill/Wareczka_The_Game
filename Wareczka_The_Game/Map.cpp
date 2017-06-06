@@ -1,10 +1,10 @@
 #include "Map.h"
 #include <Windows.h>
 
-Map::Map(std::string patch)
+Map::Map(std::string path)
 {
 	//load and set map texture
-	if (!texture.loadFromFile(patch))
+	if (!texture.loadFromFile(path))
 	{
 		MessageBox(NULL, "Error! Textures not found. Please, reinstal the game.", ERROR, NULL);
 		return;

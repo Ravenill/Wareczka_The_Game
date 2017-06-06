@@ -17,7 +17,6 @@
 #define YWHEEL 10.0f
 
 
-
 Car::Car()
 {
 	//TICK for time
