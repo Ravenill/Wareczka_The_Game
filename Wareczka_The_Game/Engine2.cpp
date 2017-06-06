@@ -138,6 +138,7 @@ void Engine2::collision()
 			{
 				gui.setScore(-10);
 				policeman.hit();
+				policeman.setStatus(StatusPoliceman::NOTGOOD);
 			}
 		}
 	}

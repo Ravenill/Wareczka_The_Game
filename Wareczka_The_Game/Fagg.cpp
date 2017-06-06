@@ -20,6 +20,7 @@ Fagg::Fagg() : a_star(static_cast<std::string>("data/graphics/Ch2/map_fagg.bmap"
 	speed = 1;
 	radius = 10.0;
 	_hit = 0;
+	stat = StatusPoliceman::GOOD;
 
 	//set a policeman
 	shape.setRadius(radius);
@@ -65,15 +66,21 @@ void Fagg::move()
 
 void Fagg::update()
 {
-	move();
-
-	if (((shape.getPosition().x < current_d.x + 5) && (shape.getPosition().x > current_d.x - 5)) && ((shape.getPosition().y < current_d.y + 5) && (shape.getPosition().y > current_d.y - 5)))
+	if (stat == StatusPoliceman::GOOD)
 	{
-		current_d = path.top();
-		path.pop();
+		move();
+
+		if (((shape.getPosition().x < current_d.x + 5) && (shape.getPosition().x > current_d.x - 5)) && ((shape.getPosition().y < current_d.y + 5) && (shape.getPosition().y > current_d.y - 5)))
+		{
+			current_d = path.top();
+			path.pop();
+		}
+
+		if (path.empty())
+			destination();
 	}
-
-	if (path.empty())
-		destination();
-
+	else
+	{
+		shape.setFillColor(sf::Color::Red);
+	}
 }
