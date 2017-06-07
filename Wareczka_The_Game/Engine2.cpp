@@ -112,7 +112,7 @@ void Engine2::collision()
 				if (check_collision(player_car, 4, wall[z], 4, player_car[j] - wall[z][i]))
 				{
 					player.setStatus(StatusCar::DEAD);
-					//gui.resetScore();
+					gui.resetScore();
 					State = StatusGame2::GAME_OVER;
 				}
 			}
@@ -207,7 +207,7 @@ void Engine2::game()
 		if (gui.getTime() <= 0)
 		{
 			State = StatusGame2::GAME_OVER;
-			//gui.resetScore();
+			gui.resetScore();
 			menu = true;
 		}
 		//if go outside
