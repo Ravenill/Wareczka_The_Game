@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "States.h"
+#include <deque>
 
 
 class Car : public sf::Drawable, sf::Transformable
@@ -12,6 +13,7 @@ private:
 	sf::ConvexShape shape[2];
 	sf::ConvexShape wheel[4];
 	StatusCar status;
+	std::deque<sf::ConvexShape*> track;
 
 	//parameters
 	unsigned static const int max_speed = 7;
@@ -30,11 +32,14 @@ private:
 	void strighten();
 	void rotate();
 
+	void createWheelTrack();
+	void addWheelTrack(sf::ConvexShape *mark1, sf::ConvexShape *mark2);
+
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 public:
 	Car();
-	~Car() {}
+	~Car();
 
 	sf::Vector2f getPosition(size_t index);
 	StatusCar getStatus() { return status; }

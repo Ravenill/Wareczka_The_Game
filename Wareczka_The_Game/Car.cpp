@@ -15,6 +15,7 @@
 //Wheel Paramteres
 #define XWHEEL 5.0f
 #define YWHEEL 10.0f
+#define AMOUNT_OF_PARTICLES 1000
 
 
 Car::Car()
@@ -83,6 +84,17 @@ Car::Car()
 	time = 1;//floor(time2.asMilliseconds());//shitfloor
 }
 
+Car::~Car()
+{
+	int size = track.size();
+	for (int i = 0; i < size; i++)
+	{
+		sf::ConvexShape* temp = track.front();
+		track.pop_front();
+		delete temp;
+	}
+}
+
 sf::Vector2f Car::getPosition(size_t index)
 {
 	if(static_cast<int>(index) < 2)
@@ -94,6 +106,7 @@ sf::Vector2f Car::getPosition(size_t index)
 void Car::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
+	for (auto i : track) target.draw(*i);
 	for (int i = 0; i < 4; i++) target.draw(wheel[i]);
 	for (int i = 0; i < 2; i++) target.draw(shape[i]);
 }
@@ -212,7 +225,10 @@ void Car::playAnimation(bool play)
 void Car::handbreak()
 {
 	if (speed > 0.25)
+	{
 		speed = speed - 0.08f;
+		createWheelTrack();
+	}
 	else if (speed < -0.25)
 		speed = speed + 0.08f;
 	
@@ -271,4 +287,55 @@ void Car::rotate_wheel(int angle)
 	{
 		wheel_rad -= angle*2;
 	}
+}
+
+void Car::createWheelTrack()
+{
+	sf::ConvexShape *wheel_temp1 = new sf::ConvexShape;
+	sf::ConvexShape *wheel_temp2 = new sf::ConvexShape;
+	addWheelTrack(wheel_temp1, wheel_temp2);
+
+	if (track.size() > AMOUNT_OF_PARTICLES)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			sf::ConvexShape *temp2 = track.front();
+			track.pop_front();
+			delete temp2;
+		}
+	}
+}
+
+void Car::addWheelTrack(sf::ConvexShape *mark1, sf::ConvexShape *mark2)
+{
+	//left wheel
+	mark1->setPointCount(4);
+	
+	mark1->setPoint(0, sf::Vector2f(0, 0));
+	mark1->setPoint(1, sf::Vector2f(XWHEEL, 0));
+	mark1->setPoint(2, sf::Vector2f(XWHEEL, YWHEEL));
+	mark1->setPoint(3, sf::Vector2f(0, YWHEEL));
+
+	mark1->setOrigin((XWHEEL / 2), (YWHEEL / 2));
+	mark1->setFillColor(sf::Color(0,0,0,50));
+
+	mark1->setPosition(wheel[2].getPosition());
+	mark1->setRotation(wheel[2].getRotation());
+
+	//right wheel
+	mark2->setPointCount(4);
+
+	mark2->setPoint(0, sf::Vector2f(0, 0));
+	mark2->setPoint(1, sf::Vector2f(XWHEEL, 0));
+	mark2->setPoint(2, sf::Vector2f(XWHEEL, YWHEEL));
+	mark2->setPoint(3, sf::Vector2f(0, YWHEEL));
+
+	mark2->setOrigin((XWHEEL / 2), (YWHEEL / 2));
+	mark2->setFillColor(sf::Color(0, 0, 0, 50));
+
+	mark2->setPosition(wheel[3].getPosition());
+	mark2->setRotation(wheel[3].getRotation());
+
+	track.push_back(mark1);
+	track.push_back(mark2);
 }
