@@ -11,7 +11,7 @@ class Engine2
 private:
 	sf::RenderWindow *MainWindow;
 	StatusGame2 State;
-	Gui gui;
+	Gui gui; 
 	Car player;
 	Map map;
 	Bottle wareczka;
