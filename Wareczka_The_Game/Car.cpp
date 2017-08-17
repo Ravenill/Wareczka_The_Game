@@ -64,7 +64,7 @@ Car::Car()
 	speed = 0;
 	wheel_rad = 0;
 	speed_rad = 0;
-	status = ALIVE;
+	status = StatusCar::ALIVE;
 
 	vx = 0;
 	vy = 0;

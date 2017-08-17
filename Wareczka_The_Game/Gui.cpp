@@ -31,7 +31,7 @@ void Gui::update(StatusCar dead)
 	std::string sc;
 	setDead(dead);
 
-	text[2].setString( ((is_dead == ALIVE) ? "OK" : ((is_dead == DEAD) ? "CRASHED" : "ESCAPED")) );
+	text[2].setString( ((is_dead == StatusCar::ALIVE) ? "OK" : ((is_dead == StatusCar::DEAD) ? "CRASHED" : "ESCAPED")) );
 
 	sc = std::to_string(score);
 	text[3].setString(sc);
@@ -85,7 +85,7 @@ Gui::Gui()
 
 	score = 0;
 	max_score = 0;
-	is_dead = ALIVE;
+	is_dead = StatusCar::ALIVE;
 	clock.restart();
 	time = sf::seconds(1);
 }

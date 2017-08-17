@@ -8,7 +8,7 @@
 
 Game::Game()
 {
-	State = END;
+	State = Status::END;
 	setting.antialiasingLevel = 8;
 
 	//Tworzenie okna
@@ -41,7 +41,7 @@ Game::Game()
 	Musicbckgrd.setVolume(20);
 	musicinmenu = false;
 	fullscreen = 0;
-	State = MENU1;
+	State = Status::MENU1;
 }
 
 Game::~Game()
@@ -51,23 +51,23 @@ Game::~Game()
 
 void Game::runGame()
 {
-	while (State != END)
+	while (State != Status::END)
 	{
 		switch (State)
 		{
-		case MENU1:
+		case Status::MENU1:
 			menu1();
 			break;
-		case MENU2:
+		case Status::MENU2:
 			menu2();
 			break;
-		case GAME1:
+		case Status::GAME1:
 			game1();
 			break;
-		case GAME2:
+		case Status::GAME2:
 			game2();
 			break;
-		case GAME3:
+		case Status::GAME3:
 			game3();
 			break;
 		}
@@ -109,7 +109,7 @@ void Game::menu1()
 	text[3].setCharacterSize(30);
 	text[3].setPosition(RESX, 55);
 
-	while (State == MENU1)
+	while (State == Status::MENU1)
 	{
 		//Obs³uga eventów
 		sf::Event event;
@@ -119,19 +119,19 @@ void Game::menu1()
 			{
 			case sf::Event::Closed:
 				MainWindow.close();
-				State = END;
+				State = Status::END;
 				break;
 
 			case sf::Event::MouseButtonReleased:
 				if (event.key.code == sf::Mouse::Left && text[0].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
 				{
-					State = MENU2;
+					State = Status::MENU2;
 				}
 				if (event.key.code == sf::Mouse::Left && text[1].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
 				{
 					Musicbckgrd.stop();
 					MainWindow.close();
-					State = END;
+					State = Status::END;
 				}
 				//Fullscreen/Windowed
 				if (!fullscreen)
@@ -223,26 +223,26 @@ void Game::menu2()
 	frame[1].setPosition(632, 336);
 	frame[2].setPosition(1071, 337);
 
-	while (State == MENU2)
+	while (State == Status::MENU2)
 	{
 		//Obs³uga Eventów
 		sf::Event event;
 		while (MainWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				State = END;
+				State = Status::END;
 			//Back
 			if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left && text.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
-				State = MENU1;
+				State = Status::MENU1;
 			//Chapter1
 			if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left && frame[0].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
-				State = GAME1;
+				State = Status::GAME1;
 			//Chapter2
 			if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left && frame[1].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
-				State = GAME2;
+				State = Status::GAME2;
 			//Chapter3
 			if (event.type == sf::Event::MouseButtonReleased && event.key.code == sf::Mouse::Left && frame[2].getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(MainWindow))))
-				State = GAME3;
+				State = Status::GAME3;
 		}//Koniec WHILE pollEvent
 
 		//Obs³uga efektów
@@ -285,7 +285,7 @@ void Game::menu2()
 void Game::game1()
 {
 	MessageBox(NULL, "DLC will be released soon!", "Information", MB_ICONINFORMATION);
-	State = MENU2;
+	State = Status::MENU2;
 }
 
 void Game::game2()
@@ -293,18 +293,18 @@ void Game::game2()
 	musicinmenu = 0;
 	Musicbckgrd.pause();
 
-	State = GAME2;
+	State = Status::GAME2;
 
 	Engine2 engine(MainWindow);
 	engine.run();
 
-	State = MENU2;
+	State = Status::MENU2;
 }
 
 void Game::game3()
 {
 	MessageBox(NULL, "DLC will be released soon!", "Information", MB_ICONINFORMATION);
-	State = MENU2;
+	State = Status::MENU2;
 }
 
 void Game::gameOver()

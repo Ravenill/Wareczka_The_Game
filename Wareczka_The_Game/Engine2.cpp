@@ -145,12 +145,19 @@ void Engine2::collision()
 }
 
 //_____________________________________________
+Engine2::Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")), State(StatusGame2::RUN), wareczka(5)
+{
+	camera.setViewOnWindow(MainWindow);
+}
+
 void Engine2::update()
 {
 	player.update();
 	policeman.update();
 	collision();
 	gui.update(player.getStatus());
+	camera.update(gui.getScore());
+	camera.setViewOnWindow(MainWindow);
 }
 
 void Engine2::draw()
@@ -220,7 +227,7 @@ void Engine2::game()
 
 
 		//player - moving
-		if (player.getStatus() != DEAD)
+		if (player.getStatus() != StatusCar::DEAD)
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{

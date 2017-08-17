@@ -4,6 +4,7 @@
 #include "Gui.h"
 #include "Bottle.h"
 #include "Fagg.h"
+#include "Camera.h"
 #include <string>
 
 class Engine2
@@ -11,6 +12,7 @@ class Engine2
 private:
 	sf::RenderWindow *MainWindow;
 	StatusGame2 State;
+	camera camera;
 	Gui gui; 
 	Car player;
 	Map map;
@@ -27,8 +29,8 @@ private:
 
 
 public:
-	Engine2(sf::RenderWindow &win) : MainWindow(&win), map(static_cast<std::string>("data\\graphics\\Ch2\\map.jpg")), State(StatusGame2::RUN), wareczka(5) {};
-	~Engine2() {}
+	Engine2(sf::RenderWindow &win);
+	~Engine2() { camera.setViewOnWindow(MainWindow); }
 
 	void run();
 	void game();
