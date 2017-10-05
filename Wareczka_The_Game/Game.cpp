@@ -284,7 +284,7 @@ void Game::menu2()
 
 void Game::game1()
 {
-	MessageBox(NULL, "DLC will be released soon!", "Information", MB_ICONINFORMATION);
+	MessageBox(NULL, "DLC will be released soon!!", "Information", MB_ICONINFORMATION);
 	State = Status::MENU2;
 }
 
@@ -303,7 +303,7 @@ void Game::game2()
 
 void Game::game3()
 {
-	MessageBox(NULL, "DLC will be released soon!", "Information", MB_ICONINFORMATION);
+	MessageBox(NULL, "DLC will be released soon!!", "Information", MB_ICONINFORMATION);
 	State = Status::MENU2;
 }
 
