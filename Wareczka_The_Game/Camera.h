@@ -9,10 +9,13 @@ class camera
 private:
 	sf::View view;
 	sf::View defaultView;
-	int counter, counter2;
+    sf::Vector2f destination;
+    sf::Clock clock;
+    sf::Time lastChange;
 
-	sf::Vector2f randomizeNewPointFromDrunkLevel(int drunkLevel);
-	sf::Vector2f randomizeSizeFromDrunkLevel(int drunkLevel);
+	void randomizeNewPointFromDrunkLevel(int drunkLevel);
+    bool isDestination();
+    sf::Vector2f getNextCordsToDestination();
 
 public:
 	camera();
