@@ -156,8 +156,8 @@ void Engine2::update()
 	policeman.update();
 	collision();
 	gui.update(player.getStatus());
-	camera.update(gui.getScore());
-	camera.setViewOnWindow(MainWindow);
+	//camera.update(gui.getScore());
+	//camera.setViewOnWindow(MainWindow);
 }
 
 void Engine2::draw()

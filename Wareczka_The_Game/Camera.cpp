@@ -1,12 +1,12 @@
 #include "Camera.h"
 
-sf::Vector2f camera::randomizeCenterFromDrunkLevel(int drunkLevel)
+sf::Vector2f camera::randomizeNewPointFromDrunkLevel(int drunkLevel)
 {
 	float x = RESX/2, y = RESY/2;
 	
 	if (drunkLevel > 0 && counter > 10)
 	{
-		int range;
+		int range = 0;
 		range = (drunkLevel / 5) + 1;
 
 
@@ -60,6 +60,6 @@ void camera::setViewOnWindow(sf::RenderWindow *mainWindow)
 
 void camera::update(int score)
 {
-	view.setCenter(randomizeCenterFromDrunkLevel(score));
+	view.setCenter(randomizeNewPointFromDrunkLevel(score));
 	view.setSize(randomizeSizeFromDrunkLevel(score));
 }

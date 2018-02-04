@@ -11,7 +11,7 @@ private:
 	sf::View defaultView;
 	int counter, counter2;
 
-	sf::Vector2f randomizeCenterFromDrunkLevel(int drunkLevel);
+	sf::Vector2f randomizeNewPointFromDrunkLevel(int drunkLevel);
 	sf::Vector2f randomizeSizeFromDrunkLevel(int drunkLevel);
 
 public:
